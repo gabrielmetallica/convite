@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jheyy, quer sair comigo? 🌸</title>
+<style>
+:root{--bg:#fdf0f6;--card:#fff;--text:#4a2a3a;--pink:#f7a8c8;--pink2:#ec7fae;--no:#e9dcf5;--notext:#6b4f8a;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a1824;--card:#3a2332;--text:#ffe6f0;--no:#4d3a66;--notext:#e5d4ff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#2a1824;--card:#3a2332;--text:#ffe6f0;--no:#4d3a66;--notext:#e5d4ff;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--text);font-family:"Trebuchet MS",system-ui,sans-serif;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.card{background:var(--card);border-radius:28px;padding:28px 24px;width:min(88vw,380px);text-align:center;box-shadow:0 10px 40px rgba(236,127,174,.25);position:relative;z-index:2}
+.cat{font-size:90px;line-height:1}
+.card{max-height:88vh;overflow-y:auto}
+.poem{font-size:15px;line-height:1.6;margin:14px 0;font-style:italic}
+.end{font-weight:bold;margin-top:18px}
+h1{font-size:24px;margin:14px 0 22px}
+.btns{display:flex;gap:14px;justify-content:center;align-items:center;min-height:64px}
+button{border:0;border-radius:999px;font-weight:bold;cursor:pointer;font-family:inherit}
+#yes{background:var(--pink);color:#7a1d4a;padding:12px 26px;font-size:18px;transition:font-size .15s,padding .15s}
+#no{background:var(--no);color:var(--notext);padding:10px 20px;font-size:15px;transition:left .15s,top .15s}
+.petal{position:fixed;top:-20px;font-size:18px;z-index:1;animation:fall linear infinite;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="cat" id="cat">🐱</div>
+  <h1 id="msg">🌸 Jheyy, quer sair comigo? 🌸</h1>
+  <div class="btns"><button id="yes">SIM 💕</button><button id="no">não... 🥺</button></div>
+</div>
+<script>
+const yes=document.getElementById('yes'),no=document.getElementById('no');
+const cat=document.getElementById('cat'),msg=document.getElementById('msg');
+let size=18,tries=0;
+const faces=['🐱','😿','🙀','😾'];
+for(let i=0;i<18;i++){const p=document.createElement('div');p.className='petal';p.textContent='🌸';
+p.style.left=Math.random()*100+'vw';p.style.animationDuration=(6+Math.random()*6)+'s';p.style.animationDelay=(-Math.random()*8)+'s';document.body.appendChild(p)}
+function run(e){
+  e.preventDefault();
+  no.style.position='fixed';
+  const w=no.offsetWidth,h=no.offsetHeight;
+  no.style.left=Math.random()*(innerWidth-w-20)+10+'px';
+  no.style.top=Math.random()*(innerHeight-h-20)+10+'px';
+  tries++;size=Math.min(size+4,44);
+  yes.style.fontSize=size+'px';yes.style.padding=(size/2)+'px '+(size*1.4)+'px';
+  cat.textContent=faces[tries%faces.length];
+}
+no.addEventListener('mouseenter',run);
+no.addEventListener('touchstart',run,{passive:false});
+no.addEventListener('click',run);
+yes.addEventListener('click',()=>{
+  document.querySelector('.card').innerHTML='<div class="cat">😻</div><h1>Eeeee! Combinado, Jheyy! 💖</h1><p>Fiz esse poema pra você 🌸</p><div class="poem">Pelo rio abaixo<br>Eu fui atraído por sua graça<br>Como as flores coloridas de uma árvore<br>Seu sorriso floresce fora da primavera<br>Posso te adorar com tanto carisma<br>Te arrastar para mim como um tornado<br><br>Nas profundezas do esquecimento<br>Eu estava encravando na poça<br>Cheio de lágrimas e imprudência<br><br>Eu quero ferver apenas de te ver<br>Você brilha<br>Faça-me pegar fogo<br>E eu te faço dançar nas alturas<br>Vou mantê-la sã e salva<br><br>Sinta sua pele na minha<br>Esqueça o tempo assim como as nuvens no céu<br>Perante a distância<br>Não importo contanto que você esteja envolvida em meus braços</div><p class="end">Mesmo com a distância, um dia eu quero te conhecer ❤️</p>';
+  for(let i=0;i<40;i++){const p=document.createElement('div');p.className='petal';p.textContent=['💖','🌸','✨'][i%3];
+  p.style.left=Math.random()*100+'vw';p.style.animationDuration=(2+Math.random()*3)+'s';document.body.appendChild(p)}
+});
+</script>
+</body>
+</html>
